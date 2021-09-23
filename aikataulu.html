@@ -4,6 +4,47 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="festit.css">
     <style>
+      /* COLLAPSIBLE */
+      .collapsible {
+      display: block;
+      background-color: #fff;
+      margin: auto;
+      color: black;
+      cursor: pointer;
+      padding: 20px;
+      width: 95%;
+      // border: 10px;
+      // border-color: black;
+      text-align: left;
+      // outline: none;
+      font-size: 15px;
+      
+      }
+
+      .collapsible:hover {
+      background-color: #6663;
+      }
+
+      .collapsible:after {
+      content: '\002B';
+      color: #666;
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+      }
+
+      // .active:after {
+      // content: "\2212";
+      // }
+
+      .content {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background-color: #f1f1f1;
+      }
+      
       /* TABLE */
       
       table {
@@ -35,34 +76,42 @@
       }
       
     </style>
-    <title>Ohjelma - IntegraatioFest 2020</title>
+    <title>Aikataulu - IntegraatioFest 2020</title>
     </head>
   <body>
     <div class="banner">
+     <ul>
+      <li><a class="active" href="koti.html">Koti</a></li>
+        <li><a href="ohjelma.html">Ohjelma</a></li>
+        <li><a href="aikataulu.html">Aikataulu</a></li>
+        <li><a href="puhujat.html">Puhujat</a></li>
+        <li><a href="ilmoittautuminen.html">Ilmoittautuminen</a></li>
+       </ul>
+       <li><a href="sponsorit.html">Sponsorit</a></li>
+       </ul>
+       <li><a href="excut.html">Ekskursiot</a></li>
+       </ul>
       <div class="banner-text">
 	<h1>IntegraatioFest 2020</h1>
       </div>
     </div>
     
-    <ul>
-      <li><a href="koti.html">Koti</a></li>
-      <li><a href="ohjelma.html">Ohjelma</a></li>
-      <li><a class="active" href="aikataulu.html">Aikataulu</a></li>
-      <li><a href="puhujat.html">Puhujat</a></li>
-      <li><a href="ilmoittautuminen.html">Ilmoittautuminen</a></li>
-    </ul>
-
+    
     <p>Sivusto vähän kesken.</p>
 
+    <!-- linkit, jos aikataulut ilman collapsiblejä
     <p><a href="#kaikki">Kaikki</a></p>
     <p><a href="#pe">Perjantai</a></p>
     <p><a href="#la">Lauantai</a></p>
     <p><a href="#su">Sunnuntai</a></p>
-
+    -->
+    
     <p></p>
     
     <div id="kaikki"></div>
-    
+
+    <button class="collapsible">Kaikki</button>
+    <div class="content">
     <table>
       <tr style="background-color: #f1f1f1">
 	<th class="time"></th>
@@ -212,11 +261,14 @@
 	<th>Jotain</th>
       </tr>
     </table>
-    
+    </div>
+
     <p></p>
 
     <div id="pe"></div>
-    
+
+    <button class="collapsible">Perjantai</button>
+    <div class="content">
     <table>
       <tr style="background-color: #f1f1f1">
 	<th></th>
@@ -287,10 +339,13 @@
 	<th>Jotain</th>
       </tr>
     </table>
-
+    </div>
+    
     <p></p>
     <div id="la"></div>
-    
+
+    <button class="collapsible">Lauantai</button>
+    <div class="content">
     <table>
       <tr style="background-color: #f1f1f1">
 	<th></th>
@@ -362,9 +417,14 @@
       </tr>
     </table>
 
+    </div>
+
+
     <p></p>
     <div id="su"></div>
-    
+
+    <button class="collapsible">Sunnuntai</button>
+    <div class="content">
     <table>
       <tr style="background-color: #f1f1f1">
 	<th></th>
@@ -435,8 +495,24 @@
 	<th>Jotain</th>
       </tr>
     </table>
-
-
+    </div>
+    <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+      
+      for (i = 0; i < coll.length; i++) {
+		      coll[i].addEventListener("click", function() {
+		      this.classList.toggle("active");
+		      var content = this.nextElementSibling;
+		      if (content.style.maxHeight){
+		      content.style.maxHeight = null;
+		      
+		      } else {
+		      content.style.maxHeight = content.scrollHeight + "px";
+		      }
+		      });
+		      }
+    </script>
     
     </body>
 </html>
